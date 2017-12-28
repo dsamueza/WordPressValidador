@@ -1,0 +1,178 @@
+﻿
+
+@{
+    ViewBag.Title = "Valida";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<section class="content_form">
+    <div class="box-primary">
+        <div class="box-sec">
+           <h2><small>Validador Word Press.</small></h2>
+            <br />
+        </div>
+    </div>
+    <div class="content_excel">
+       <!--Html.BeginForm("Import", "Validador", FormMethod.Post, new { enctype = "multipart/form-data", class = "form-horizontal" ,id="myForm" })--> 
+       @using (Ajax.BeginForm("Import", "Validador",
+               new { @class = "form-horizontal" }, new AjaxOptions
+               {
+                   HttpMethod = "POST"
+               },
+                new { enctype = "multipart/form-data", id = "formBacklink" }))
+       {
+       @Html.ValidationSummary();
+            <div class="form-group">
+                <div class="col-sm-12  text-form">
+                    @ViewBag.error
+                </div>
+                <div class="col-sm-4 text-form">
+                    <input class="filestyle" type="file" name="fileExc" id="btnFile" />
+                </div>
+                <div class="col-sm-offset-1 col-sm-2 ">
+                    <input type="submit" class="btn bg-primary" value="Verificar" id="btnGuardar"/>
+                </div>
+                
+            </div>
+         
+
+        }
+        <div class="imgcargar col-sm-offset-1 col-sm-4"  id="contenidoAjax" >
+            <p>   <img src="~/Content/img/tenor.gif" /></p>
+        </div>
+        <br />
+        
+            <div class="box-primary" hidden id="tablaDT">
+                <div class="box-sec">
+                    <div id="DatosTabla" class="col-xs-12 col-sm-12    col-lg-12">
+                        <br />
+                        <div class="table-responsive">
+                            <table id="datosCoord" class="table table-striped table-bordered table-hover dataTable no-footer small" role="grid">
+                                <caption class="text-left"><b> Observaciones</b></caption>
+                                <thead>
+                                    <tr>
+                                        <th>Dato</th>
+                                        <th>Celda</th>
+                                        <th>Error</th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody class="searchable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+</section>
+@section Scripts {
+  <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+@section viewDidLoad
+{
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('div#contenidoAjax').hide();
+        $(":file").filestyle('buttonText', 'Cargar...');
+        llenar("");
+
+    });
+
+
+    function OnSuccess(p1, p2) {
+       $('div#contenidoAjax').  show();
+       $('#btnFile').attr("disabled", true);
+       $('#btnGuardar').attr("disabled", true);
+       $('#tablaDT').hide();
+       $('#btnFile').val = "";
+
+        $.ajax({
+            type: "POST",
+            url: p1,
+            data: p2,
+            dataType: "json", //change to your own, else read my note above on enabling the JsonValueProviderFactory in MVC
+            contentType: contentType,
+            processData: processData,
+            success: function (data) {
+                if (data == '-1') {
+                    habilitar()
+                    bootbox.alert("Verificar si el archivo ingresado es el correcto")
+                    
+                    return
+                }
+                if (data.length > 0) {
+                    llenar(data)
+                    $('#tablaDT').show();
+                    habilitar()
+                  
+                } else {
+                    habilitar()
+                    bootbox.alert("No se registro ningún error en la información del archivo   ")
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                habilitar()
+                bootbox.alert("Existio un error vuelva intentar cargando archivo, vuelva a cargarlo")
+            }
+        });
+
+    }
+    function habilitar() {
+        $('div#contenidoAjax').hide();
+        $('#btnFile').attr("disabled", false);
+        $('#btnGuardar').attr("disabled", false);
+
+    }
+    function llenar(response) {
+        $('#datosCoord').DataTable({
+             "language": {
+                    "url": "@Url.Content("~/Scripts/dataTables/Latino.json")"
+                },
+                autoFill: true,
+            "destroy": true,
+            "data": response,
+
+            "columns": [
+                { "data": "Valor" },
+                { "data": "celda" },
+                { "data": "error" },
+                
+            ]
+        });
+    }
+
+
+    window.addEventListener("submit", function (e) {
+        if ($('#formBacklink').valid()) {
+            var form = e.target;
+            if (form.getAttribute("enctype") === "multipart/form-data") {
+                if (form.dataset.ajax) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+
+                    var dataString;
+                    event.preventDefault();
+                    var action = $("#formBacklink").attr("action");
+                    if ($("#formBacklink").attr("enctype") == "multipart/form-data") {
+
+                        dataString = new FormData($("#formBacklink").get(0));
+                        contentType = false;
+                        processData = false;
+
+                        OnSuccess(action, dataString)
+                    } else {
+                        alert("Ingrese el archivo  que desea validar")    
+                    }
+
+                }
+            }
+        }
+    }, true);
+</script>
+
+
+}
+

@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressValidador", "WordPressValidador\WordPressValidador.csproj", "{9BDFE9E0-1582-4554-A574-960A79DF114D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressValidador.Tests", "WordPressValidador.Tests\WordPressValidador.Tests.csproj", "{63C56B31-8E0D-4355-9438-7EAD24A527C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNegocio", "CNegocio\CNegocio.csproj", "{39646ED5-4A2C-4B3F-878F-44BDC13AEA4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDato", "CDato\CDato.csproj", "{F55686FE-B14D-40F2-8B7E-9748A2272456}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BDFE9E0-1582-4554-A574-960A79DF114D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDFE9E0-1582-4554-A574-960A79DF114D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDFE9E0-1582-4554-A574-960A79DF114D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDFE9E0-1582-4554-A574-960A79DF114D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C56B31-8E0D-4355-9438-7EAD24A527C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C56B31-8E0D-4355-9438-7EAD24A527C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C56B31-8E0D-4355-9438-7EAD24A527C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C56B31-8E0D-4355-9438-7EAD24A527C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39646ED5-4A2C-4B3F-878F-44BDC13AEA4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39646ED5-4A2C-4B3F-878F-44BDC13AEA4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39646ED5-4A2C-4B3F-878F-44BDC13AEA4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39646ED5-4A2C-4B3F-878F-44BDC13AEA4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F55686FE-B14D-40F2-8B7E-9748A2272456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F55686FE-B14D-40F2-8B7E-9748A2272456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F55686FE-B14D-40F2-8B7E-9748A2272456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F55686FE-B14D-40F2-8B7E-9748A2272456}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
